@@ -36,8 +36,24 @@ struct TaskRow : View {
         }
     }
 }
-//struct TaskRow_Previews: PreviewProvider {
-//    static var previews: some View {
-//        TaskRow(task: )
-//    }
-//}
+
+#if DEBUG
+struct TaskRow_Previews: PreviewProvider {
+    static var previews: some View {
+        let context = (NSApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let newTask = Task(context: context)
+        newTask.id = UUID()
+        newTask.isComplete = false
+        newTask.name = "Preview"
+        newTask.dateAdded = Date()
+//        do {
+//            try context.save()
+//        } catch {
+//            print(error)
+//        }
+        
+        return TaskRow(task: newTask)
+//            .environment(\.managedObjectContext, (NSApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
+    }
+}
+#endif
