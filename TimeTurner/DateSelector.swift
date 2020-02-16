@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct DateSelector: View {
-    @State private var selectedDate = Date()
+    @Binding var selectedDate: Date
     var body: some View {
         Form{
             DatePicker(selection: $selectedDate, in: Date()..., displayedComponents: [.date]){
@@ -22,7 +22,8 @@ struct DateSelector: View {
 }
 
 struct DatePicker_Previews: PreviewProvider {
+    @State static var dueDate: Date? = nil
     static var previews: some View {
-        DateSelector()
+        DateSelector(selectedDate: Binding<Date>(get: {self.dueDate ?? Date()}, set: {self.dueDate = $0}))
     }
 }
