@@ -37,26 +37,14 @@ struct TaskRow : View {
                             ){
                                 Text("X")
                             }
-//                            .sheet(isPresented: $showDatePicker) {
-//                                VStack {
-//                                    DateSelector(selectedDate: Binding<Date>(get: {self.dueDate ?? Date()}, set: {self.dueDate = $0})).transition(.opacity)
-//                                    Button(action: {self.showDatePicker.toggle()}){
-//                                        Text("Done")
-//                                    }
-//                                }
-//                            }
                         }
-                        
                     }
                     else{
                         Button(action: {self.showDatePicker.toggle()}){
                             Text("(Due)")
-                        }.sheet(isPresented: $showDatePicker) {
+                        }.popover(isPresented: $showDatePicker) {
                             VStack {
                                 DateSelector(selectedDate: Binding<Date>(get: {self.dueDate ?? Date()}, set: {self.dueDate = $0})).transition(.opacity)
-//                                Button(action: {self.showDatePicker.toggle()}){
-//                                    Text("Done")
-//                                }
                             }
                         }
                     }
