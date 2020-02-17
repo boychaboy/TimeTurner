@@ -12,11 +12,9 @@ struct DateSelector: View {
     @Binding var selectedDate: Date
     var body: some View {
         Form{
-            DatePicker(selection: $selectedDate, in: Date()..., displayedComponents: [.date]){
-                Text("Due")
-                
-            }.padding(5)
-                .datePickerStyle(GraphicalDatePickerStyle())
+            DatePicker("Select a Date", selection: $selectedDate, displayedComponents: [.date])
+            .labelsHidden()
+            .datePickerStyle(GraphicalDatePickerStyle())
         }
     }
 }
