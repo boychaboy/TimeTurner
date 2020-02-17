@@ -51,6 +51,6 @@ struct Checkbox : View {
 
 //struct Checkbox_Previews: PreviewProvider {
 //    static var previews: some View {
-////        Checkbox()
+//        Checkbox()
 //    }
 //}
