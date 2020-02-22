@@ -48,7 +48,6 @@ struct TaskRow : View {
                             }
                         }
                     }
-                    
                 }
                 else {
                     HStack {
@@ -58,7 +57,6 @@ struct TaskRow : View {
                             Text("Due: \(dueDate!, formatter: dateFormatter)")
                         }
                     }
-                    
                 }
             }
             .padding(.leading, 10)
