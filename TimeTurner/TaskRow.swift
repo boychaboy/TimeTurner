@@ -49,7 +49,6 @@ struct TaskRow : View {
                             }
                         }
                     }
-                    
                 }
                 else {
                     VStack(alignment : .leading) {
