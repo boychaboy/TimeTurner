@@ -20,6 +20,7 @@ struct TaskRow : View {
     @State private var taskName = ""
     @State private var dueDate:Date? = nil
     @State private var showDatePicker = false
+    @State private var memo = ""
     
     var body: some View {
         HStack {
@@ -50,15 +51,18 @@ struct TaskRow : View {
                     }
                 }
                 else {
-                    HStack {
-                        Text(task.name!)
-                            .font(.headline)
-                        if(dueDate != nil){
-                            Text("Due: \(dueDate!, formatter: dateFormatter)")
+                    VStack(alignment : .leading) {
+                        HStack {
+                            Text(task.name!)
+                                .font(.headline)
+                            if(dueDate != nil){
+                                Text("Due: \(dueDate!, formatter: dateFormatter)")
+                            }
                         }
+                    TextField("Add Memo", text: $memo)
                     }
                 }
-            }
+            }   
             .padding(.leading, 10)
             .frame(width: 300, alignment: .topLeading)
             .onTapGesture {
