@@ -12,6 +12,7 @@ struct TaskRow : View {
     var task: Task
     @State private var showDetail = false
     @State private var taskName = ""
+    @State private var memo = ""
     var body: some View {
         HStack {
             Checkbox(task: task)
@@ -23,9 +24,10 @@ struct TaskRow : View {
                     HStack {
                         Text(task.name!)
                             .font(.headline)
+                    TextField("Add Memo", text: $memo)
                     }
                 }
-            }
+            }   
             .padding(.leading, 10)
             .frame(width: 300, alignment: .topLeading)
             .onTapGesture {
