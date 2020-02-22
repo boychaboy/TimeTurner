@@ -9,56 +9,21 @@
 import SwiftUI
 
 struct TaskRow : View {
-    var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .long
-        formatter.doesRelativeDateFormatting = true
-        return formatter
-    }
     var task: Task
     @State private var showDetail = false
     @State private var taskName = ""
-    @State private var dueDate:Date? = nil
-    @State private var showDatePicker = false
-    
     var body: some View {
         HStack {
             Checkbox(task: task)
             VStack(alignment: .leading) {
                 if showDetail {
                     TextField("text", text: $taskName)
-                    if(dueDate != nil){
-                        HStack{
-                            Text("Due: \(dueDate!, formatter: dateFormatter)")
-                            Button(action: {
-                                self.clearDueDate();
-                                self.showDatePicker.toggle()
-                            }
-                            ){
-                                Text("X")
-                            }
-                        }
-                    }
-                    else{
-                        Button(action: {self.showDatePicker.toggle()}){
-                            Text("(Due)")
-                        }.popover(isPresented: $showDatePicker) {
-                            VStack {
-                                DateSelector(selectedDate: Binding<Date>(get: {self.dueDate ?? Date()}, set: {self.dueDate = $0})).transition(.opacity)
-                            }
-                        }
-                    }
-                    
                 }
                 else {
                     HStack {
                         Text(task.name!)
                             .font(.headline)
-                        if(dueDate != nil){
-                            Text("Due: \(dueDate!, formatter: dateFormatter)")
-                        }
                     }
-                    
                 }
             }
             .padding(.leading, 10)
@@ -69,9 +34,6 @@ struct TaskRow : View {
                 }
             }
         }
-    }
-    func clearDueDate(){
-        self.dueDate = nil
     }
 }
 

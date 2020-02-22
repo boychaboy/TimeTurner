@@ -17,6 +17,7 @@
 		1744947523EABD7400E52E5E /* TaskRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1744947423EABD7400E52E5E /* TaskRow.swift */; };
 		1744947723EABDA300E52E5E /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1744947623EABDA300E52E5E /* Checkbox.swift */; };
 		1744947923EB05E500E52E5E /* DateSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1744947823EB05E400E52E5E /* DateSelector.swift */; };
+		1749F0562401062D009CCA0C /* DueDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1749F0552401062D009CCA0C /* DueDate.swift */; };
 		17C7CA8023EFE9AC00D8FCD6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C7CA7F23EFE9AC00D8FCD6 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +35,7 @@
 		1744947423EABD7400E52E5E /* TaskRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRow.swift; sourceTree = "<group>"; };
 		1744947623EABDA300E52E5E /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
 		1744947823EB05E400E52E5E /* DateSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelector.swift; sourceTree = "<group>"; };
+		1749F0552401062D009CCA0C /* DueDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DueDate.swift; sourceTree = "<group>"; };
 		17C7CA7F23EFE9AC00D8FCD6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,6 +73,7 @@
 				1744945E23EABBA800E52E5E /* TaskList.swift */,
 				17C7CA7F23EFE9AC00D8FCD6 /* ContentView.swift */,
 				1744947423EABD7400E52E5E /* TaskRow.swift */,
+				1749F0552401062D009CCA0C /* DueDate.swift */,
 				1744947823EB05E400E52E5E /* DateSelector.swift */,
 				1744947623EABDA300E52E5E /* Checkbox.swift */,
 				1744946323EABBAA00E52E5E /* Assets.xcassets */,
@@ -165,6 +168,7 @@
 			files = (
 				1744947523EABD7400E52E5E /* TaskRow.swift in Sources */,
 				1744947323EABC3500E52E5E /* Task.swift in Sources */,
+				1749F0562401062D009CCA0C /* DueDate.swift in Sources */,
 				17C7CA8023EFE9AC00D8FCD6 /* ContentView.swift in Sources */,
 				1744947723EABDA300E52E5E /* Checkbox.swift in Sources */,
 				1744945F23EABBA800E52E5E /* TaskList.swift in Sources */,
