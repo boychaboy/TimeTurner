@@ -17,15 +17,16 @@ struct TaskRow : View {
         HStack {
             Checkbox(task: task)
             VStack(alignment: .leading) {
-                if showDetail {
-                    TextField("text", text: $taskName)
-                }
-                else {
-                    HStack {
-                        Text(task.name!)
-                            .font(.headline)
-                    TextField("Add Memo", text: $memo)
+                HStack {
+                    if showDetail {
+                        TextField("text", text: $taskName)
                     }
+                    else{
+                        Text(task.name!)
+                        .font(.headline)
+                        //TextField("Add Memo", text: $memo)
+                    }
+                    DueDate(isSelected: $showDetail)
                 }
             }   
             .padding(.leading, 10)

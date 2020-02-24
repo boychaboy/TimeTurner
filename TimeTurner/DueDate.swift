@@ -15,32 +15,41 @@ struct DueDate: View {
         formatter.doesRelativeDateFormatting = true
         return formatter
     }
+//    var task: Task
     @State private var dueDate:Date? = nil
     @State private var showDateSelector = false
+    @Binding var isSelected: Bool
     var body: some View {
         VStack{
-            if(dueDate != nil){
-                HStack{
-                    Text("Due: \(dueDate!, formatter: dateFormatter)")
-                    Button(action: {
-                        self.clearDueDate();
-                        self.showDateSelector.toggle()
+            if isSelected {
+                if(dueDate != nil){
+                    HStack{
+                        Text("Due: \(dueDate!, formatter: dateFormatter)")
+                        Button(action: {
+                            self.clearDueDate();
+                            self.showDateSelector.toggle()
+                        }
+                        ){
+                            Text("􀆄")
+                        }
+                        .buttonStyle(BorderedButtonStyle())
                     }
-                    ){
-                        Text("􀆄")
+                }
+                else{
+                    Button(action: {self.showDateSelector.toggle()}){
+                        Text("􀋊")
+                    }.popover(isPresented: $showDateSelector) {
+                        VStack {
+                            DateSelector(selectedDate: Binding<Date>(get: {self.dueDate ?? Date()}, set: {self.dueDate = $0}))
+                        }
                     }
-                    .buttonStyle(BorderlessButtonStyle())
+                    .buttonStyle(BorderedButtonStyle())
                 }
             }
             else{
-                Button(action: {self.showDateSelector.toggle()}){
-                    Text("􀋊")
-                }.popover(isPresented: $showDateSelector) {
-                    VStack {
-                        DateSelector(selectedDate: Binding<Date>(get: {self.dueDate ?? Date()}, set: {self.dueDate = $0}))
-                    }
+                if(dueDate != nil){
+                    Text("􀋊 \(dueDate!, formatter: dateFormatter)")
                 }
-                .buttonStyle(BorderlessButtonStyle())
             }
         }
     }
@@ -50,7 +59,8 @@ struct DueDate: View {
 }
 
 struct DueDate_Previews: PreviewProvider {
+    @State static var isSelected = true
     static var previews: some View {
-        DueDate()
+        DueDate(isSelected: $isSelected)
     }
 }
