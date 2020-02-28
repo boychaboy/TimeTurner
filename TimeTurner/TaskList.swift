@@ -28,7 +28,9 @@ struct TaskList: View {
     ) var notCompletedTasks: FetchedResults<Task>
 //
 //    @FetchRequest(fetchRequest: Task.getIncompleteTasks()) var notCompletedTasks: FetchedResults<Task>
-    
+
+    @State var isOn = false //[boychaboy] global variable to show list one at a time
+    @State var selected = -1
     var body: some View {
         VStack {
             HStack{
@@ -40,25 +42,30 @@ struct TaskList: View {
                     Text("Add Task")
                 }
             }.padding(.all)
+            /*
             List {
                 ForEach(notCompletedTasks){ task in
 //                    Button(action: {
 //                        self.updateTask(task)
 //                    }){
-                        TaskRow(task: task)
+                    TaskRow(task: task, isOn: self.$isOn)
 //                    }
+                }
+            }*/
+            List {
+                ForEach(0..<notCompletedTasks.count){ i in
+                    TaskRow(selected: self.$selected, task: self.notCompletedTasks[i], index: i, isOn: self.$isOn)
                 }
             }
         }
     }
-    
+
     func addTask() {
         let newTask = Task(context: context)
         newTask.id = UUID()
         newTask.isComplete = false
         newTask.name = taskName
         newTask.dateAdded = Date()
-        
         do {
             try context.save()
         } catch {

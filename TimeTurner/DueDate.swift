@@ -18,7 +18,7 @@ struct DueDate: View {
 //    var task: Task
     @State private var dueDate:Date? = nil
     @State private var showDateSelector = false
-    @Binding var isSelected: Bool
+    var isSelected: Bool
     var body: some View {
         VStack{
             if isSelected {
@@ -59,8 +59,7 @@ struct DueDate: View {
 }
 
 struct DueDate_Previews: PreviewProvider {
-    @State static var isSelected = true
     static var previews: some View {
-        DueDate(isSelected: $isSelected)
+        DueDate(isSelected: true)
     }
 }
