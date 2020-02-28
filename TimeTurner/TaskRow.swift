@@ -87,17 +87,17 @@ struct TaskRow : View {
                         self.selected = self.index
                     }
                     self.isOn = true
-                    print("case 1")
+                    //print("case 1")
                 }
                 else if self.selected == self.index && self.isOn{ //toggle off
                     withAnimation {
                         self.selected = -1
                     }
                     self.isOn = false
-                    print("case 2")
+                    //print("case 2")
                 }
                 else if self.selected != self.index && self.isOn { //reset
-                    print("case 3")
+                    //print("case 3")
                     self.isOn = false
                     self.selected = -1
                     //resetShowDetail()
@@ -105,10 +105,7 @@ struct TaskRow : View {
             }
         )
     }
-    func resetShowDetail(){
-        
-    }
-    
+
     func clearDueDate(){
         self.dueDate = nil
     }

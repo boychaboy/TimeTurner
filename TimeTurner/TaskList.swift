@@ -59,15 +59,7 @@ struct TaskList: View {
             }
         }
     }
-    func resetTask(_ task: Task) {
-        task.isShow = false
-        do {
-            try context.save()
-        } catch {
-            print(error)
-        }
-    }
-    
+
     func addTask() {
         let newTask = Task(context: context)
         newTask.id = UUID()
