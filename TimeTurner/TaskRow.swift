@@ -9,20 +9,13 @@
 import SwiftUI
 
 struct TaskRow : View {
-    var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .long
-        formatter.doesRelativeDateFormatting = true
-        return formatter
-    }
+
     //var detail: Bool
     //@State var showDetail = false
     @Binding var selected : Int
     var task: Task
     var index : Int
     @State private var taskName = ""
-    @State private var dueDate:Date? = nil
-    @State private var showDatePicker = false
     @State private var memo = ""
     @Binding var isOn: Bool
     
@@ -30,43 +23,17 @@ struct TaskRow : View {
         HStack {
             Checkbox(task: task)
             VStack(alignment: .leading) {
-                if self.selected == index {
-                    //TextField("text", text: $taskName)
-                    Text(task.name!)
-                    
-                    if(dueDate != nil){
-                        HStack{
-                            Text("Due: \(dueDate!, formatter: dateFormatter)")
-                            Button(action: {
-                                self.clearDueDate();
-                                self.showDatePicker.toggle()
-                            }
-                            ){
-                                Text("X")
-                            }
-                        }
+                HStack {
+                    if self.selected == index {
+                        //TextField("text", text: $taskName)
+                        Text(task.name!)
                     }
                     else{
-                        Button(action: {self.showDatePicker.toggle()}){
-                            Text("(Due)")
-                        }.popover(isPresented: $showDatePicker) {
-                            VStack {
-                                DateSelector(selectedDate: Binding<Date>(get: {self.dueDate ?? Date()}, set: {self.dueDate = $0})).transition(.opacity)
-                            }
-                        }
+                        Text(task.name!)
+                        .font(.headline)
+                        //TextField("Add Memo", text: $memo)
                     }
-                }
-                else {
-                    VStack(alignment : .leading) {
-                        HStack {
-                            Text(task.name!)
-                                .font(.headline)
-                            if(dueDate != nil){
-                                Text("Due: \(dueDate!, formatter: dateFormatter)")
-                            }
-                        }
-                    TextField("Add Memo", text: $memo)
-                    }
+                    DueDate(isSelected: (self.selected == index))
                 }
             }
             /*
@@ -104,10 +71,6 @@ struct TaskRow : View {
                 }
             }
         )
-    }
-
-    func clearDueDate(){
-        self.dueDate = nil
     }
 }
 

@@ -19,7 +19,7 @@ struct DateSelector: View {
     }
 }
 
-struct DatePicker_Previews: PreviewProvider {
+struct DateSelector_Previews: PreviewProvider {
     @State static var dueDate: Date? = nil
     static var previews: some View {
         DateSelector(selectedDate: Binding<Date>(get: {self.dueDate ?? Date()}, set: {self.dueDate = $0}))
