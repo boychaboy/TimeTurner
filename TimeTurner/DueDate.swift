@@ -30,14 +30,14 @@ struct DueDate: View {
                             self.showDateSelector.toggle()
                         }
                         ){
-                            Text("􀆄")
+                            Text("🚩")
                         }
                         .buttonStyle(BorderedButtonStyle())
                     }
                 }
                 else{
                     Button(action: {self.showDateSelector.toggle()}){
-                        Text("􀋊")
+                        Text("🚩")
                     }.popover(isPresented: $showDateSelector) {
                         VStack {
                             DateSelector(selectedDate: Binding<Date>(get: {self.dueDate ?? Date()}, set: {self.dueDate = $0}))
@@ -48,7 +48,7 @@ struct DueDate: View {
             }
             else{
                 if(dueDate != nil){
-                    Text("􀋊 \(dueDate!, formatter: dateFormatter)")
+                    Text("🚩 \(dueDate!, formatter: dateFormatter)")
                 }
             }
         }
