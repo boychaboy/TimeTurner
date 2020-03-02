@@ -12,7 +12,7 @@ struct TaskRow : View {
 
     //var detail: Bool
     //@State var showDetail = false
-    @Binding var selected : Int
+    @Binding var selection : Int?
     var task: Task
     var index : Int
     @State private var taskName = ""
@@ -24,8 +24,8 @@ struct TaskRow : View {
             Checkbox(task: task)
             VStack(alignment: .leading) {
                 HStack {
-                    if self.selected == index {
-                        //TextField("text", text: $taskName)
+                    if self.selection == index {
+                        TextField("text", text: $taskName)
                         Text(task.name!)
                     }
                     else{
@@ -34,7 +34,7 @@ struct TaskRow : View {
                         //TextField("Add Memo", text: $memo)
                     }
                     Spacer()
-                    DueDate(isSelected: (self.selected == index))
+                    DueDate(isSelected: (self.selection == index))
                 }
             }
             /*
@@ -50,24 +50,24 @@ struct TaskRow : View {
         }
         .gesture(TapGesture()
             .onEnded {
-                if self.selected == -1 && !self.isOn{//toggle on
+                if self.selection == nil && !self.isOn{//toggle on
                     withAnimation {
-                        self.selected = self.index
+                        self.selection = self.index
                     }
                     self.isOn = true
                     //print("case 1")
                 }
-                else if self.selected == self.index && self.isOn{ //toggle off
+                else if self.selection == self.index && self.isOn{ //toggle off
                     withAnimation {
-                        self.selected = -1
+                        self.selection = nil
                     }
                     self.isOn = false
                     //print("case 2")
                 }
-                else if self.selected != self.index && self.isOn { //reset
+                else if self.selection != self.index && self.isOn { //reset
                     //print("case 3")
                     self.isOn = false
-                    self.selected = -1
+                    self.selection = nil
                     //resetShowDetail()
                 }
             }
@@ -78,7 +78,7 @@ struct TaskRow : View {
 #if DEBUG
 struct TaskRow_Previews: PreviewProvider {
     @State static var isOn = false
-    @State static var selected = -1
+    @State static var selection:Int? = nil
     static var previews: some View {
         let context = (NSApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let newTask = Task(context: context)
@@ -91,7 +91,7 @@ struct TaskRow_Previews: PreviewProvider {
 //        } catch {
 //            print(error)
 //        }
-        return TaskRow(selected: $selected, task: newTask, index: 0, isOn: $isOn)
+        return TaskRow(selection: $selection, task: newTask, index: 0, isOn: $isOn)
 //            .environment(\.managedObjectContext, (NSApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
     }
 }
