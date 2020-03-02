@@ -33,6 +33,7 @@ struct TaskRow : View {
                         .font(.headline)
                         //TextField("Add Memo", text: $memo)
                     }
+                    Spacer()
                     DueDate(isSelected: (self.selected == index))
                 }
             }
@@ -45,7 +46,7 @@ struct TaskRow : View {
                 }
             )*/
             .padding(.leading, 10)
-            .frame(width: 300, alignment: .topLeading)
+//            .frame(width: 300, alignment: .topLeading)
         }
         .gesture(TapGesture()
             .onEnded {
