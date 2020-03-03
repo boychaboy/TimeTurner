@@ -48,30 +48,30 @@ struct TaskRow : View {
             .padding(.leading, 10)
 //            .frame(width: 300, alignment: .topLeading)
         }
-//        .gesture(TapGesture()
-//            .onEnded {
-//                if self.selection == nil && !self.isOn{//toggle on
-//                    withAnimation {
-//                        self.selection = self.index
-//                    }
-//                    self.isOn = true
-//                    //print("case 1")
-//                }
-//                else if self.selection == self.index && self.isOn{ //toggle off
-//                    withAnimation {
-//                        self.selection = nil
-//                    }
-//                    self.isOn = false
-//                    //print("case 2")
-//                }
-//                else if self.selection != self.index && self.isOn { //reset
-//                    //print("case 3")
-//                    self.isOn = false
-//                    self.selection = nil
-//                    //resetShowDetail()
-//                }
-//            }
-//        )
+        .gesture(TapGesture()
+            .onEnded {
+                if self.selection == nil && !self.isOn{//toggle on
+                    withAnimation {
+                        self.selection = self.index
+                    }
+                    self.isOn = true
+                    //print("case 1")
+                }
+                else if self.selection == self.index && self.isOn{ //toggle off
+                    withAnimation {
+                        self.selection = nil
+                    }
+                    self.isOn = false
+                    //print("case 2")
+                }
+                else if self.selection != self.index && self.isOn { //reset
+                    //print("case 3")
+                    self.isOn = false
+                    self.selection = nil
+                    //resetShowDetail()
+                }
+            }
+        )
     }
 }
 

@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  TaskList.swift
 //  TimeTurner
 //
 //  Created by Maegan Wilson on 12/17/19.
@@ -52,11 +52,11 @@ struct TaskList: View {
 //                    }
                 }
             }*/
-            List(selection: $selection) {
-                ForEach(0..<notCompletedTasks.count){ i in
-                    TaskRow(selection: self.$selection, task: self.notCompletedTasks[i], index: i, isOn: self.$isOn)
+//            List(selection: $selection) {
+                ForEach(notCompletedTasks){ task in
+                    TaskRow(selection: self.$selection, task: task, index: self.notCompletedTasks.firstIndex(of: task)!, isOn: self.$isOn)
                 }
-            }
+//            }
         }
     }
 
