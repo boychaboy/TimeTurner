@@ -53,8 +53,8 @@ struct TaskList: View {
                 }
             }*/
             List {
-                ForEach(0..<notCompletedTasks.count){ i in
-                    TaskRow(selected: self.$selected, task: self.notCompletedTasks[i], index: i, isOn: self.$isOn)
+                ForEach(notCompletedTasks){ task in
+                    TaskRow(selected: self.$selected, task: task, index: self.notCompletedTasks.firstIndex(of: task)!, isOn: self.$isOn)
                 }
             }
         }
