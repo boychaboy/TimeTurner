@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct DueDate: View {
+    @Environment(\.managedObjectContext) var context
     var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateStyle = .long
@@ -16,45 +17,52 @@ struct DueDate: View {
         return formatter
     }
     var task: Task
-    @State private var dueDate:Date? = nil
     @State private var showDateSelector = false
     var isSelected: Bool
     var body: some View {
         VStack{
             if isSelected {
-                if(dueDate != nil){
+                if(task.dueDate != nil){
                     HStack{
-                        Text("Due: \(dueDate!, formatter: dateFormatter)")
+                        Text("Due: \(task.dueDate!, formatter: dateFormatter)")
                         Button(action: {
+                            self.showDateSelector = true
                             self.clearDueDate();
-                            self.showDateSelector.toggle()
                         }
                         ){
-                            Text("🚩")
+                            Text("X")
                         }
                         .buttonStyle(BorderedButtonStyle())
                     }
                 }
                 else{
-                    Button(action: {self.showDateSelector.toggle()}){
+                    Button(action: {self.showDateSelector = true}){
                         Text("🚩")
                     }.popover(isPresented: $showDateSelector) {
                         VStack {
-                            DateSelector(selectedDate: Binding<Date>(get: {self.dueDate ?? Date()}, set: {self.dueDate = $0}))
+                            DateSelector(selectedDate: Binding<Date>(get: {self.task.dueDate ?? Date()}, set: {self.setDueDate(dueDate: $0)}
+                                )
+                            )
                         }
                     }
                     .buttonStyle(BorderedButtonStyle())
                 }
             }
             else{
-                if(dueDate != nil){
-                    Text("🚩 \(dueDate!, formatter: dateFormatter)")
+                if(self.task.dueDate != nil){
+                    Text("🚩 \(self.task.dueDate!, formatter: dateFormatter)")
                 }
             }
         }
     }
     func clearDueDate(){
-        self.dueDate = nil
+        self.task.dueDate = nil
+        try? context.save()
+    }
+    
+    func setDueDate(dueDate: Date){
+        self.task.dueDate = dueDate
+        try? context.save()
     }
 }
 
