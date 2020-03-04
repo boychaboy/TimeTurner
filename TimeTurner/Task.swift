@@ -10,6 +10,9 @@ import Foundation
 import CoreData
 
 extension Task: Identifiable {
+    public var wrappedName: String {
+        name ?? "New To-Do"
+    }
 //    static func getIncompleteTasks() -> NSFetchRequest<Task> {
 //      let request: NSFetchRequest<Task> = Task.fetchRequest()
 //      request.sortDescriptors = [NSSortDescriptor(keyPath: \Task.dateAdded, ascending: false)]
