@@ -26,7 +26,6 @@ struct TaskRow : View {
                 HStack {
                     if self.selection == self.task {
                         TextField("text", text: $taskName)
-                        Text(task.name!)
                     }
                     else{
                         Text(task.name!)
