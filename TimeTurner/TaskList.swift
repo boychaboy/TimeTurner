@@ -35,7 +35,7 @@ struct TaskList: View {
         VStack {
             HStack{
                 TextField("Task Name", text: $taskName)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .textFieldStyle(PlainTextFieldStyle())
                 Button(action: {
                     self.addTask()
                 }){
