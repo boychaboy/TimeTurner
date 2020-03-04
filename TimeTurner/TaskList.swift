@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  TaskList.swift
 //  TimeTurner
 //
 //  Created by Maegan Wilson on 12/17/19.
@@ -30,7 +30,7 @@ struct TaskList: View {
 //    @FetchRequest(fetchRequest: Task.getIncompleteTasks()) var notCompletedTasks: FetchedResults<Task>
 
     @State var isOn = false //[boychaboy] global variable to show list one at a time
-    @State var selected = -1
+    @State var selection : Task? = nil
     var body: some View {
         VStack {
             HStack{
@@ -52,10 +52,8 @@ struct TaskList: View {
 //                    }
                 }
             }*/
-            List {
-                ForEach(notCompletedTasks){ task in
-                    TaskRow(selected: self.$selected, task: task, index: self.notCompletedTasks.firstIndex(of: task)!, isOn: self.$isOn)
-                }
+            ForEach(notCompletedTasks){ task in
+                TaskRow(selection: self.$selection, task: task, isOn: self.$isOn)
             }
         }
     }
