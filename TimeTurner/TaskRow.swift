@@ -1,5 +1,5 @@
 //
-//  Task.swift
+//  TaskRow.swift
 //  TimeTurner
 //
 //  Created by Kun Jeong on 2020/01/23.
@@ -10,14 +10,9 @@ import SwiftUI
 
 struct TaskRow : View {
     @Environment(\.managedObjectContext) var context
-    //var detail: Bool
-    //@State var showDetail = false
     @Binding var selection : Task?
     var task: Task
-//    var index : Int
-//    @State private var taskName = ""
     @State private var memo = ""
-    @State private var textFieldDisabled = false
     
     func setName(name: String){
         self.task.name = name
@@ -39,10 +34,8 @@ struct TaskRow : View {
                                     try? self.context.save()
                                 }
                         }){
-//                            self.isOn = false
                             self.selection = nil
-                            self.textFieldDisabled = true
-                        }.disabled(textFieldDisabled)
+                        }.disabled(selection != task)
                         TextField("Add Memo", text: $memo)
                     }
                     else{
@@ -69,17 +62,12 @@ struct TaskRow : View {
             .onEnded {
                 if self.selection == nil{//toggle on
                     self.selection = self.task
-                    self.textFieldDisabled = false
-                    //print("case 1")
                 }
                 else if self.selection == self.task{ //toggle off
                     self.selection = nil
-                    self.textFieldDisabled = true
-                    //print("case 2")
                 }
                 else if self.selection != self.task { //reset
                     self.selection = nil
-                    self.textFieldDisabled = true
                 }
             }
         )
@@ -97,7 +85,6 @@ struct TaskRow_Previews: PreviewProvider {
         newTask.name = "Preview"
         newTask.dateAdded = Date()
         return TaskRow(selection: $selection, task: newTask)
-//            .environment(\.managedObjectContext, (NSApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
     }
 }
 #endif

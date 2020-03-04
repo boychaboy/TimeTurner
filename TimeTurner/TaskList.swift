@@ -2,8 +2,8 @@
 //  TaskList.swift
 //  TimeTurner
 //
-//  Created by Maegan Wilson on 12/17/19.
-//  Copyright © 2019 Maegan Wilson. All rights reserved.
+//  Created by Kun Jeong on 2020/01/23.
+//  Copyright © 2020 Kun Jeong. All rights reserved.
 //
 
 import SwiftUI
