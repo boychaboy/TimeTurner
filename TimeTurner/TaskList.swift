@@ -34,7 +34,10 @@ struct TaskList: View {
     var body: some View {
         VStack {
             HStack{
-                TextField("Task Name", text: $taskName)
+                TextField("Task Name", text: $taskName){
+                    self.addTask()
+                    
+                }
                     .textFieldStyle(PlainTextFieldStyle())
                 Button(action: {
                     self.addTask()
@@ -64,6 +67,7 @@ struct TaskList: View {
         newTask.isComplete = false
         newTask.name = taskName
         newTask.dateAdded = Date()
+        taskName = ""
         do {
             try context.save()
         } catch {
