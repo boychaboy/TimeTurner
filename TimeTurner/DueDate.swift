@@ -15,7 +15,7 @@ struct DueDate: View {
         formatter.doesRelativeDateFormatting = true
         return formatter
     }
-//    var task: Task
+    var task: Task
     @State private var dueDate:Date? = nil
     @State private var showDateSelector = false
     var isSelected: Bool
@@ -60,6 +60,12 @@ struct DueDate: View {
 
 struct DueDate_Previews: PreviewProvider {
     static var previews: some View {
-        DueDate(isSelected: true)
+        let context = (NSApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let newTask = Task(context: context)
+        newTask.id = UUID()
+        newTask.isComplete = false
+        newTask.name = "Preview"
+        newTask.dateAdded = Date()
+        return DueDate(task: newTask, isSelected: true)
     }
 }
