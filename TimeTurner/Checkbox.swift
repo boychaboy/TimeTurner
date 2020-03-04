@@ -49,11 +49,7 @@ struct Checkbox : View {
     }
     func updateTask(_ task: Task){
         task.isComplete = true
-        do {
-            try context.save()
-        } catch {
-            print(error)
-        }
+        try? context.save()
     }
 
 }

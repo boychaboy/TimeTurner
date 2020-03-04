@@ -9,15 +9,21 @@
 import SwiftUI
 
 struct TaskRow : View {
-
+    @Environment(\.managedObjectContext) var context
     //var detail: Bool
     //@State var showDetail = false
     @Binding var selection : Task?
     var task: Task
 //    var index : Int
-    @State private var taskName = ""
+//    @State private var taskName = ""
     @State private var memo = ""
     @Binding var isOn: Bool
+    @State private var textFieldDisabled = false
+    
+    func setName(name: String){
+        self.task.name = name
+        try? context.save()
+    }
     
     var body: some View {
         HStack {
@@ -25,15 +31,28 @@ struct TaskRow : View {
             VStack(alignment: .leading) {
                 HStack {
                     if self.selection == self.task {
-                        TextField("text", text: $taskName)
+                        TextField("text", text: Binding<String>(get: {self.task.wrappedName}, set: {self.setName(name: $0)})
+                            , onEditingChanged: { changed in
+                                if changed {
+                                    try? self.context.save()
+                                }
+                                else {
+                                    try? self.context.save()
+                                }
+                        }){
+                            self.isOn = false
+                            self.selection = nil
+                            self.textFieldDisabled = true
+                        }.disabled(textFieldDisabled)
+                        TextField("Add Memo", text: $memo)
                     }
                     else{
-                        Text(task.name!)
+                        Text(task.wrappedName)
                         .font(.headline)
-                        //TextField("Add Memo", text: $memo)
+                        
                     }
                     Spacer()
-                    DueDate(isSelected: (self.selection == self.task))
+                    DueDate(task: task, isSelected: (self.selection == self.task))
                 }
             }
             /*
@@ -50,16 +69,18 @@ struct TaskRow : View {
         .gesture(TapGesture()
             .onEnded {
                 if self.selection == nil && !self.isOn{//toggle on
-                    withAnimation {
+//                    withAnimation {
                         self.selection = self.task
-                    }
+//                    }
+                    self.textFieldDisabled = false
                     self.isOn = true
                     //print("case 1")
                 }
                 else if self.selection == self.task && self.isOn{ //toggle off
-                    withAnimation {
+//                    withAnimation {
                         self.selection = nil
-                    }
+//                    }
+                    self.textFieldDisabled = true
                     self.isOn = false
                     //print("case 2")
                 }
@@ -67,6 +88,7 @@ struct TaskRow : View {
                     //print("case 3")
                     self.isOn = false
                     self.selection = nil
+                    self.textFieldDisabled = true
                     //resetShowDetail()
                 }
             }
