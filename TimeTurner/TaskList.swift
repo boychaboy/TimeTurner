@@ -9,34 +9,23 @@
 import SwiftUI
 import CoreData
 
-//struct TaskRow: View {
-//    var task: Task
-//
-//    var body: some View {
-//        Text(task.name ?? "No name given")
-//    }
-//}
-
 struct TaskList: View {
     @Environment(\.managedObjectContext) var context
-    // this is the variable we added
-    @State private var taskName: String = ""
     @FetchRequest(
         entity: Task.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Task.dateAdded, ascending: false)],
         predicate: NSPredicate(format: "isComplete == %@", NSNumber(value: false))
     ) var notCompletedTasks: FetchedResults<Task>
-//
-//    @FetchRequest(fetchRequest: Task.getIncompleteTasks()) var notCompletedTasks: FetchedResults<Task>
-
-    @State var isOn = false //[boychaboy] global variable to show list one at a time
     @State var selection : Task? = nil
+    @State private var taskName: String = ""
+    
     var body: some View {
         VStack {
             HStack{
                 TextField("Task Name", text: $taskName){
-                    self.addTask()
-                    
+                    if(self.taskName != "") {
+                        self.addTask()
+                    }
                 }
                     .textFieldStyle(PlainTextFieldStyle())
                 Button(action: {
@@ -45,18 +34,8 @@ struct TaskList: View {
                     Text("Add Task")
                 }
             }.padding(.all)
-            /*
-            List {
-                ForEach(notCompletedTasks){ task in
-//                    Button(action: {
-//                        self.updateTask(task)
-//                    }){
-                    TaskRow(task: task, isOn: self.$isOn)
-//                    }
-                }
-            }*/
             ForEach(notCompletedTasks){ task in
-                TaskRow(selection: self.$selection, task: task, isOn: self.$isOn)
+                TaskRow(selection: self.$selection, task: task)
             }
         }
     }
@@ -68,20 +47,12 @@ struct TaskList: View {
         newTask.name = taskName
         newTask.dateAdded = Date()
         taskName = ""
-        do {
-            try context.save()
-        } catch {
-            print(error)
-        }
+        try? context.save()
     }
     
     func updateTask(_ task: Task){
         task.isComplete = true
-        do {
-            try context.save()
-        } catch {
-            print(error)
-        }
+        try? context.save()
     }
 }
 

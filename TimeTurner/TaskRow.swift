@@ -17,7 +17,6 @@ struct TaskRow : View {
 //    var index : Int
 //    @State private var taskName = ""
     @State private var memo = ""
-    @Binding var isOn: Bool
     @State private var textFieldDisabled = false
     
     func setName(name: String){
@@ -40,7 +39,7 @@ struct TaskRow : View {
                                     try? self.context.save()
                                 }
                         }){
-                            self.isOn = false
+//                            self.isOn = false
                             self.selection = nil
                             self.textFieldDisabled = true
                         }.disabled(textFieldDisabled)
@@ -68,28 +67,19 @@ struct TaskRow : View {
         }
         .gesture(TapGesture()
             .onEnded {
-                if self.selection == nil && !self.isOn{//toggle on
-//                    withAnimation {
-                        self.selection = self.task
-//                    }
+                if self.selection == nil{//toggle on
+                    self.selection = self.task
                     self.textFieldDisabled = false
-                    self.isOn = true
                     //print("case 1")
                 }
-                else if self.selection == self.task && self.isOn{ //toggle off
-//                    withAnimation {
-                        self.selection = nil
-//                    }
-                    self.textFieldDisabled = true
-                    self.isOn = false
-                    //print("case 2")
-                }
-                else if self.selection != self.task && self.isOn { //reset
-                    //print("case 3")
-                    self.isOn = false
+                else if self.selection == self.task{ //toggle off
                     self.selection = nil
                     self.textFieldDisabled = true
-                    //resetShowDetail()
+                    //print("case 2")
+                }
+                else if self.selection != self.task { //reset
+                    self.selection = nil
+                    self.textFieldDisabled = true
                 }
             }
         )
@@ -98,7 +88,6 @@ struct TaskRow : View {
 
 #if DEBUG
 struct TaskRow_Previews: PreviewProvider {
-    @State static var isOn = false
     @State static var selection: Task? = nil
     static var previews: some View {
         let context = (NSApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -107,12 +96,7 @@ struct TaskRow_Previews: PreviewProvider {
         newTask.isComplete = false
         newTask.name = "Preview"
         newTask.dateAdded = Date()
-//        do {
-//            try context.save()
-//        } catch {
-//            print(error)
-//        }
-        return TaskRow(selection: $selection, task: newTask, isOn: $isOn)
+        return TaskRow(selection: $selection, task: newTask)
 //            .environment(\.managedObjectContext, (NSApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
     }
 }
