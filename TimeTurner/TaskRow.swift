@@ -47,16 +47,7 @@ struct TaskRow : View {
                     DueDate(task: task, isSelected: (self.selection == self.task))
                 }
             }
-            /*
-            .gesture(TapGesture()
-                .onEnded {
-                    withAnimation {
-                        self.showDetail.toggle()
-                    }
-                }
-            )*/
             .padding(.leading, 10)
-//            .frame(width: 300, alignment: .topLeading)
         }
         .gesture(TapGesture()
             .onEnded {

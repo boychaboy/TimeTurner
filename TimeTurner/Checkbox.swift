@@ -23,23 +23,20 @@ struct Checkbox : View {
     var task: Task
     @State var isComplete = false
     var body: some View {
-
          Button(action:
             {
                 self.completeTask(self.task)
-        }) {
+         }) {
             HStack(alignment: .top, spacing: 10) {
-
-                        //2. Will update according to state
-                   Rectangle()
+                Rectangle()
                     .fill(self.isComplete ? Color.green : Color.red)
-                            .frame(width:20, height:20, alignment: .center)
+                    .frame(width:20, height:20, alignment: .center)
                     .border(Color.green, width: 3)
                     .cornerRadius(3)
             }
-        }.buttonStyle(CheckBoxStyle())
-
+         }.buttonStyle(CheckBoxStyle())
     }
+    
     func completeTask(_ task: Task){
         self.isComplete.toggle()
         let delayTime = DispatchTime.now() + 1.0
@@ -47,6 +44,7 @@ struct Checkbox : View {
             self.updateTask(task)
         })
     }
+    
     func updateTask(_ task: Task){
         task.isComplete = true
         try? context.save()
