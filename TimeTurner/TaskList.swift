@@ -30,7 +30,7 @@ struct TaskList: View {
 //    @FetchRequest(fetchRequest: Task.getIncompleteTasks()) var notCompletedTasks: FetchedResults<Task>
 
     @State var isOn = false //[boychaboy] global variable to show list one at a time
-    @State var selection : Int? = nil
+    @State var selection : Task? = nil
     var body: some View {
         VStack {
             HStack{
@@ -52,11 +52,9 @@ struct TaskList: View {
 //                    }
                 }
             }*/
-//            List(selection: $selection) {
-                ForEach(notCompletedTasks){ task in
-                    TaskRow(selection: self.$selection, task: task, index: self.notCompletedTasks.firstIndex(of: task)!, isOn: self.$isOn)
-                }
-//            }
+            ForEach(notCompletedTasks){ task in
+                TaskRow(selection: self.$selection, task: task, isOn: self.$isOn)
+            }
         }
     }
 
