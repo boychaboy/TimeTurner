@@ -19,49 +19,87 @@ struct TaskRow : View {
         try? context.save()
     }
     
+    func deSelectSelf(){
+        withAnimation{
+            self.selection = nil
+        }
+    }
+    
+    func selectSelf(){
+        withAnimation{
+            self.selection = self.task
+        }
+    }
+    
     var body: some View {
-        HStack {
+        HStack(alignment: .top, spacing: 0) {
             Checkbox(task: task)
-            VStack(alignment: .leading) {
-                HStack {
-                    if self.selection == self.task {
-                        TextField("text", text: Binding<String>(get: {self.task.wrappedName}, set: {self.setName(name: $0)})
-                            , onEditingChanged: { changed in
-                                if changed {
-                                    try? self.context.save()
-                                }
-                                else {
-                                    try? self.context.save()
-                                }
-                        }){
-                            self.selection = nil
-                        }.disabled(selection != task)
-                        TextField("Add Memo", text: $memo)
-                    }
-                    else{
-                        Text(task.wrappedName)
+            if self.selection == self.task {
+                VStack(alignment: .leading) {
+                    TextField("text", text: Binding<String>(get: {self.task.wrappedName}, set: {self.setName(name: $0)}), onEditingChanged: { changed in
+                            if changed {
+                                self.selectSelf()
+                            }
+                            else {
+                                try? self.context.save()
+                            }
+                    }){
+                        self.deSelectSelf()
+                    }.disabled(selection != task)
+                        .textFieldStyle(PlainTextFieldStyle())
                         .font(.headline)
-                        
+                    
+                    TextField("Add Memo", text: $memo, onEditingChanged: { changed in
+                        if changed {
+                            self.selectSelf()
+                        }
+                    }){
+                        self.deSelectSelf()
                     }
+                        .textFieldStyle(PlainTextFieldStyle())
+                    
+                    HStack{
+                        Spacer()
+                        DueDate(task: task, isSelected: (self.selection == self.task))
+                    }
+                }.padding(.all, 10)
+            }
+            else{
+                HStack{
+                    Text(task.wrappedName)
+                        .font(.headline).padding(.all, 10)
                     Spacer()
                     DueDate(task: task, isSelected: (self.selection == self.task))
                 }
             }
-            .padding(.leading, 10)
-        }
+                        
+                    
+                
+            
+    }
+//        .padding(.top, 10)
         .gesture(TapGesture()
             .onEnded {
                 if self.selection == nil{//toggle on
-                    self.selection = self.task
+                    withAnimation{
+                        self.selection = self.task
+                    }
                 }
                 else if self.selection == self.task{ //toggle off
-                    self.selection = nil
+                    withAnimation{
+                        self.selection = nil
+                    }
                 }
                 else if self.selection != self.task { //reset
-                    self.selection = nil
+                    withAnimation{
+                        self.selection = nil
+                    }
                 }
             }
         )
+        .frame(height: self.selection == self.task ? 100 : 40)
+            .background(self.selection == self.task ?  Color(NSColor.unemphasizedSelectedContentBackgroundColor) : Color(NSColor.windowBackgroundColor))
+        .cornerRadius(10)
     }
 }
 

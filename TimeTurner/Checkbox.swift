@@ -12,7 +12,7 @@ import Dispatch
 struct CheckBoxStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-            .padding()
+            .padding(10)
 //            .foregroundColor(.white)
 //            .cornerRadius(40)
     }
@@ -27,7 +27,7 @@ struct Checkbox : View {
             {
                 self.completeTask(self.task)
          }) {
-            HStack(alignment: .top, spacing: 10) {
+            HStack(alignment: .top) {
                 Rectangle()
                     .fill(self.isComplete ? Color.green : Color.red)
                     .frame(width:20, height:20, alignment: .center)

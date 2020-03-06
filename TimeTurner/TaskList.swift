@@ -20,7 +20,7 @@ struct TaskList: View {
     @State private var taskName: String = ""
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             HStack{
                 TextField("Task Name", text: $taskName){
                     if(self.taskName != "") {
@@ -33,7 +33,8 @@ struct TaskList: View {
                 }){
                     Text("Add Task")
                 }
-            }.padding(.all)
+            }
+            .padding()
             ForEach(notCompletedTasks){ task in
                 TaskRow(selection: self.$selection, task: task)
             }
