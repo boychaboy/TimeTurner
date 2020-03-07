@@ -25,6 +25,8 @@
 		178FBE7E24135DAE00E8F2D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 178FBE7D24135DAE00E8F2D2 /* Assets.xcassets */; };
 		178FBE8124135DAE00E8F2D2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 178FBE8024135DAE00E8F2D2 /* Preview Assets.xcassets */; };
 		178FBE8424135DAE00E8F2D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 178FBE8224135DAE00E8F2D2 /* LaunchScreen.storyboard */; };
+		178FBE8C241361F800E8F2D2 /* Tab1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178FBE8B241361F800E8F2D2 /* Tab1.swift */; };
+		178FBE8E2413620100E8F2D2 /* Tab2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178FBE8D2413620000E8F2D2 /* Tab2.swift */; };
 		17C7CA8023EFE9AC00D8FCD6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C7CA7F23EFE9AC00D8FCD6 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +54,8 @@
 		178FBE8024135DAE00E8F2D2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		178FBE8324135DAE00E8F2D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		178FBE8524135DAE00E8F2D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		178FBE8B241361F800E8F2D2 /* Tab1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab1.swift; sourceTree = "<group>"; };
+		178FBE8D2413620000E8F2D2 /* Tab2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab2.swift; sourceTree = "<group>"; };
 		17C7CA7F23EFE9AC00D8FCD6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,6 +129,8 @@
 			children = (
 				178FBE7424135DAB00E8F2D2 /* AppDelegate.swift */,
 				178FBE7624135DAB00E8F2D2 /* SceneDelegate.swift */,
+				178FBE8B241361F800E8F2D2 /* Tab1.swift */,
+				178FBE8D2413620000E8F2D2 /* Tab2.swift */,
 				178FBE7B24135DAB00E8F2D2 /* ContentView.swift */,
 				178FBE7D24135DAE00E8F2D2 /* Assets.xcassets */,
 				178FBE8224135DAE00E8F2D2 /* LaunchScreen.storyboard */,
@@ -263,7 +269,9 @@
 			files = (
 				178FBE7524135DAB00E8F2D2 /* AppDelegate.swift in Sources */,
 				178FBE7A24135DAB00E8F2D2 /* TimeTurner_iOS.xcdatamodeld in Sources */,
+				178FBE8E2413620100E8F2D2 /* Tab2.swift in Sources */,
 				178FBE7C24135DAB00E8F2D2 /* ContentView.swift in Sources */,
+				178FBE8C241361F800E8F2D2 /* Tab1.swift in Sources */,
 				178FBE7724135DAB00E8F2D2 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

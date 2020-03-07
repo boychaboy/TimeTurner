@@ -9,10 +9,30 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selection = 0
+ 
     var body: some View {
-        Text("Hello, World!")
+        TabView(selection: $selection){
+            Tab1()
+                .tabItem {
+                    VStack {
+                        Image("first")
+                        Text("Books")
+                    }
+                }
+                .tag(0)
+            Tab2()
+                .tabItem {
+                    VStack {
+                        Image("second")
+                        Text("Second")
+                    }
+                }
+                .tag(1)
+        }
     }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
