@@ -16,16 +16,14 @@ struct ContentView: View {
             Tab1()
                 .tabItem {
                     VStack {
-                        Image("first")
-                        Text("Books")
+                        Text("Koon")
                     }
                 }
                 .tag(0)
             Tab2()
                 .tabItem {
                     VStack {
-                        Image("second")
-                        Text("Second")
+                        Text("boychaboy")
                     }
                 }
                 .tag(1)
