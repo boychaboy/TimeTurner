@@ -28,6 +28,11 @@
 		178FBE8C241361F800E8F2D2 /* Tab1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178FBE8B241361F800E8F2D2 /* Tab1.swift */; };
 		178FBE8E2413620100E8F2D2 /* Tab2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178FBE8D2413620000E8F2D2 /* Tab2.swift */; };
 		17C7CA8023EFE9AC00D8FCD6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C7CA7F23EFE9AC00D8FCD6 /* ContentView.swift */; };
+		F94872CB24304AB10056F09A /* TaskRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94872CA24304AB10056F09A /* TaskRow.swift */; };
+		F94872CD24304D590056F09A /* Task+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94872CC24304D590056F09A /* Task+Extensions.swift */; };
+		F94872CF24305BB10056F09A /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94872CE24305BB10056F09A /* Checkbox.swift */; };
+		F94872D124305BF10056F09A /* DueDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94872D024305BF10056F09A /* DueDate.swift */; };
+		F94872D324305D5D0056F09A /* DateSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94872D224305D5D0056F09A /* DateSelector.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +62,11 @@
 		178FBE8B241361F800E8F2D2 /* Tab1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab1.swift; sourceTree = "<group>"; };
 		178FBE8D2413620000E8F2D2 /* Tab2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab2.swift; sourceTree = "<group>"; };
 		17C7CA7F23EFE9AC00D8FCD6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F94872CA24304AB10056F09A /* TaskRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRow.swift; sourceTree = "<group>"; };
+		F94872CC24304D590056F09A /* Task+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+Extensions.swift"; sourceTree = "<group>"; };
+		F94872CE24305BB10056F09A /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
+		F94872D024305BF10056F09A /* DueDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DueDate.swift; sourceTree = "<group>"; };
+		F94872D224305D5D0056F09A /* DateSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,11 +142,16 @@
 				178FBE8B241361F800E8F2D2 /* Tab1.swift */,
 				178FBE8D2413620000E8F2D2 /* Tab2.swift */,
 				178FBE7B24135DAB00E8F2D2 /* ContentView.swift */,
+				F94872CA24304AB10056F09A /* TaskRow.swift */,
+				F94872CC24304D590056F09A /* Task+Extensions.swift */,
 				178FBE7D24135DAE00E8F2D2 /* Assets.xcassets */,
 				178FBE8224135DAE00E8F2D2 /* LaunchScreen.storyboard */,
 				178FBE8524135DAE00E8F2D2 /* Info.plist */,
 				178FBE7824135DAB00E8F2D2 /* TimeTurner_iOS.xcdatamodeld */,
 				178FBE7F24135DAE00E8F2D2 /* Preview Content */,
+				F94872CE24305BB10056F09A /* Checkbox.swift */,
+				F94872D024305BF10056F09A /* DueDate.swift */,
+				F94872D224305D5D0056F09A /* DateSelector.swift */,
 			);
 			path = TimeTurner_iOS;
 			sourceTree = "<group>";
@@ -267,11 +282,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F94872D124305BF10056F09A /* DueDate.swift in Sources */,
 				178FBE7524135DAB00E8F2D2 /* AppDelegate.swift in Sources */,
 				178FBE7A24135DAB00E8F2D2 /* TimeTurner_iOS.xcdatamodeld in Sources */,
+				F94872CF24305BB10056F09A /* Checkbox.swift in Sources */,
 				178FBE8E2413620100E8F2D2 /* Tab2.swift in Sources */,
 				178FBE7C24135DAB00E8F2D2 /* ContentView.swift in Sources */,
 				178FBE8C241361F800E8F2D2 /* Tab1.swift in Sources */,
+				F94872CB24304AB10056F09A /* TaskRow.swift in Sources */,
+				F94872D324305D5D0056F09A /* DateSelector.swift in Sources */,
+				F94872CD24304D590056F09A /* Task+Extensions.swift in Sources */,
 				178FBE7724135DAB00E8F2D2 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
